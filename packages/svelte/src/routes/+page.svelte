@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { TicTacToe } from "shared";
 	import "../app.css";
-	import GameBoard from "./GameBoard.svelte";
+
+	import GameBoard from "$lib/GameBoard.svelte";
+	import { TicTacToe } from "shared";
 
 	const game = new TicTacToe();
 

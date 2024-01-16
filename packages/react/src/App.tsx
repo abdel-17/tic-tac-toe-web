@@ -1,6 +1,7 @@
+import "./App.css";
+
 import { useRef, useState } from "react";
 import { type Player, TicTacToe } from "shared";
-import "./App.css";
 
 function useTicTacToe(): TicTacToe {
 	const gameRef = useRef<TicTacToe | null>(null);
