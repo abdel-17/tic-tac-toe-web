@@ -1,0 +1,20 @@
+:root {
+	--board-border-size: 0.25rem;
+	--board-border: black;
+	--board-bg: white;
+	--x-bg: #f87171;
+	--o-bg: #38bdf8;
+	--btn-error-bg: #dc2626;
+	--btn-error-hover-bg: #b91c1c;
+	--btn-error-active-bg: #991b1b;
+}
+
+body {
+	margin: 0;
+	font-family: system-ui, sans-serif;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
