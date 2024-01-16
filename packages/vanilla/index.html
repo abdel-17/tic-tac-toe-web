@@ -9,47 +9,29 @@
 	<body>
 		<p id="title" class="game-title">Player X</p>
 		<div class="game-board">
-			<button id="cell-1" class="game-cell"></button>
-			<button id="cell-2" class="game-cell"></button>
-			<button id="cell-3" class="game-cell"></button>
-			<button id="cell-4" class="game-cell"></button>
-			<button id="cell-5" class="game-cell"></button>
-			<button id="cell-6" class="game-cell"></button>
-			<button id="cell-7" class="game-cell"></button>
-			<button id="cell-8" class="game-cell"></button>
-			<button id="cell-9" class="game-cell"></button>
+			<button class="game-cell"></button>
+			<button class="game-cell"></button>
+			<button class="game-cell"></button>
+			<button class="game-cell"></button>
+			<button class="game-cell"></button>
+			<button class="game-cell"></button>
+			<button class="game-cell"></button>
+			<button class="game-cell"></button>
+			<button class="game-cell"></button>
 		</div>
 		<button id="reset" class="game-reset-btn">Reset</button>
 		<script type="module">
 			import { TicTacToe } from "./index.js";
 
 			const game = new TicTacToe();
-
 			const title = document.getElementById("title");
-			const cells = Array(9);
-			for (let i = 0; i < 9; ++i) {
-				cells[i] = document.getElementById(`cell-${i + 1}`);
-			}
+			const cells = document.getElementsByClassName("game-cell");
 			const resetButton = document.getElementById("reset");
-
-			resetButton.addEventListener("click", () => {
-				game.reset();
-
-				title.textContent = `Player ${game.player}`;
-
-				for (let i = 0; i < 9; ++i) {
-					const cell = cells[i];
-					cell.textContent = "";
-					cell.dataset.player = "";
-					cell.ariaDisabled = false;
-				}
-			});
 
 			for (let i = 0; i < 9; ++i) {
 				const cell = cells[i];
 				cell.addEventListener("click", () => {
 					if (game.done || game.get(i) !== null) return;
-
 					game.play(i);
 
 					cell.textContent = game.get(i);
@@ -67,12 +49,21 @@
 					}
 
 					title.textContent = `Player ${game.winner} won!`;
-
-					for (let i = 0; i < 9; ++i) {
-						cells[i].ariaDisabled = true;
+					for (const cell of cells) {
+						cell.ariaDisabled = true;
 					}
 				});
 			}
+
+			resetButton.addEventListener("click", () => {
+				game.reset();
+				title.textContent = `Player ${game.player}`;
+				for (const cell of cells) {
+					cell.textContent = "";
+					cell.dataset.player = "";
+					cell.ariaDisabled = false;
+				}
+			});
 		</script>
 	</body>
 </html>

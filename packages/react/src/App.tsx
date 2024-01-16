@@ -1,44 +1,52 @@
 import "./App.css";
 
-import { useRef, useState } from "react";
-import { type Player, TicTacToe } from "shared";
+import { useState } from "react";
+import { type Player, determineWinner } from "shared";
 
-function useTicTacToe(): TicTacToe {
-	const gameRef = useRef<TicTacToe | null>(null);
-	if (gameRef.current === null) {
-		gameRef.current = new TicTacToe();
-	}
-	return gameRef.current;
+function createEmptyBoard(): Array<Player | null> {
+	return new Array(9).fill(null);
 }
 
 export default function App() {
-	const game = useTicTacToe();
-	const [title, setTitle] = useState("Player X");
-	const [board, setBoard] = useState(game.board);
-	const [done, setDone] = useState(game.done);
+	const [board, setBoard] = useState<Array<Player | null>>(createEmptyBoard);
+	const [player, setPlayer] = useState<Player>("X");
+	const [winner, setWinner] = useState<Player | null>(null);
+	const [turns, setTurns] = useState(0);
+
+	const done = winner !== null || turns === 9;
+
+	let title: string;
+	if (turns === 9) {
+		title = "Draw!";
+	} else if (winner === null) {
+		title = `Player ${player}`;
+	} else {
+		title = `Player ${player} won!`;
+	}
 
 	function handlePlay(i: number) {
-		if (game.done || game.get(i) !== null) return;
+		if (done || board[i] !== null) return;
 
-		game.play(i);
+		const newBoard = [...board];
+		newBoard[i] = player;
+		setBoard(newBoard);
 
-		setBoard([...game.board]);
-		setDone(game.done);
+		const newWinner = determineWinner({
+			board: newBoard,
+			currentPlayer: player,
+			lastPlayedAt: i,
+		});
+		setWinner(newWinner);
 
-		if (game.turns === 9) {
-			setTitle("Draw!");
-		} else if (game.winner === null) {
-			setTitle(`Player ${game.player}`);
-		} else {
-			setTitle(`Player ${game.player} won!`);
-		}
+		setPlayer(player === "X" ? "O" : "X");
+		setTurns(turns + 1);
 	}
 
 	function handleReset() {
-		game.reset();
-		setBoard([...game.board]);
-		setDone(game.done);
-		setTitle(`Player ${game.player}`);
+		setBoard(createEmptyBoard());
+		setPlayer("X");
+		setWinner(null);
+		setTurns(0);
 	}
 
 	return (

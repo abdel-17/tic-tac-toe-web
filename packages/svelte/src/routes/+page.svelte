@@ -2,36 +2,42 @@
 	import "../app.css";
 
 	import GameBoard from "$lib/GameBoard.svelte";
-	import { TicTacToe } from "shared";
+	import { determineWinner, type Player } from "shared";
 
-	const game = new TicTacToe();
+	let board = new Array(9).fill(null);
+	let player: Player = "X";
+	let winner: Player | null = null;
+	let turns = 0;
 
-	let title = "Player X";
-	let board = game.board;
-	let done = game.done;
+	$: done = winner !== null || turns === 9;
+
+	let title: string;
+	$: if (turns === 9) {
+		title = "Draw!";
+	} else if (winner === null) {
+		title = `Player ${player}`;
+	} else {
+		title = `Player ${player} won!`;
+	}
 
 	function handlePlay(i: number) {
-		if (game.done || game.get(i) !== null) return;
+		if (done || board[i] !== null) return;
 
-		game.play(i);
-
-		board = game.board;
-		done = game.done;
-
-		if (game.turns === 9) {
-			title = "Draw!";
-		} else if (game.winner === null) {
-			title = `Player ${game.player}`;
-		} else {
-			title = `Player ${game.player} won!`;
-		}
+		board[i] = player;
+		winner = determineWinner({
+			board,
+			currentPlayer: player,
+			lastPlayedAt: i,
+		});
+		player = player === "X" ? "O" : "X";
+		turns++;
 	}
 
 	function handleReset() {
-		game.reset();
-		board = game.board;
-		done = game.done;
-		title = `Player ${game.player}`;
+		board = new Array(9).fill(null);
+		winner = null;
+		player = "X";
+		turns = 0;
 	}
 </script>
 

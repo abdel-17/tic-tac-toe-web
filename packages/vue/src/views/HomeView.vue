@@ -1,36 +1,43 @@
 <script setup lang="ts">
 import GameBoard from "@/components/GameBoard.vue";
-import { TicTacToe } from "shared";
-import { ref } from "vue";
+import { determineWinner, type Player } from "shared";
+import { computed, ref } from "vue";
 
-const game = new TicTacToe();
+const board = ref(new Array<Player | null>(9).fill(null));
+const player = ref<Player>("X");
+const winner = ref<Player | null>(null);
+const turns = ref(0);
 
-const title = ref("Player X");
-const board = ref(game.board);
-const done = ref(game.done);
+const done = computed(() => winner.value !== null || turns.value === 9);
+
+const title = computed(() => {
+	if (winner.value === null) {
+		return `Player ${player.value}`;
+	} else if (winner.value === "X") {
+		return "Player X won!";
+	} else {
+		return "Player O won!";
+	}
+});
 
 function handlePlay(i: number) {
-	if (game.done || game.get(i) !== null) return;
+	if (done.value || board.value[i] !== null) return;
 
-	game.play(i);
-
-	board.value = [...game.board];
-	done.value = game.done;
-
-	if (game.turns === 9) {
-		title.value = "Draw!";
-	} else if (game.winner === null) {
-		title.value = `Player ${game.player}`;
-	} else {
-		title.value = `Player ${game.player} won!`;
-	}
+	board.value[i] = player.value;
+	winner.value = determineWinner({
+		board: board.value,
+		currentPlayer: player.value,
+		lastPlayedAt: i,
+	});
+	player.value = player.value === "X" ? "O" : "X";
+	turns.value++;
 }
 
 function handleReset() {
-	game.reset();
-	board.value = [...game.board];
-	done.value = game.done;
-	title.value = `Player ${game.player}`;
+	board.value = new Array(9).fill(null);
+	winner.value = null;
+	player.value = "X";
+	turns.value = 0;
 }
 </script>
 

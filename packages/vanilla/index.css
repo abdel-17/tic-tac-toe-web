@@ -1,5 +1,5 @@
 :root {
-    --board-border-size: 0.25rem;
+	--board-border-size: 0.25rem;
 	--board-border: black;
 	--board-bg: white;
 	--x-bg: #f87171;
@@ -30,7 +30,7 @@ body {
 	grid-template-columns: repeat(3, 1fr);
 	gap: var(--board-border-size);
 	background-color: var(--board-border);
-    border: var(--board-border-size) solid var(--board-border);
+	border: var(--board-border-size) solid var(--board-border);
 }
 
 .game-cell {
@@ -64,7 +64,7 @@ body {
 	padding: 0 1rem;
 	border-radius: 0.25rem;
 	background-color: var(--btn-error-bg);
-    color: white;
+	color: white;
 }
 
 .game-reset-btn:hover {
