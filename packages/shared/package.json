@@ -1,12 +1,16 @@
 {
-	"name": "tic-tac-toe-web-shared",
+	"name": "shared",
 	"private": true,
+	"version": "0.0.0",
+	"scripts": {
+		"build": "tsc",
+		"format": "prettier --write ."
+	},
+	"type": "module",
 	"main": "index.js",
 	"types": "index.d.ts",
-	"scripts": {
-		"build": "tsc"
-	},
 	"devDependencies": {
+		"prettier": "^3.2.2",
 		"typescript": "^5.3.3"
 	}
 }
