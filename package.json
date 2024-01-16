@@ -1,0 +1,7 @@
+{
+	"name": "tic-tac-toe-web-monorepo",
+	"private": true,
+	"devDependencies": {
+		"prettier": "^3.2.2"
+	}
+}
