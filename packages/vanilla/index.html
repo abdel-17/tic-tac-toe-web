@@ -31,10 +31,10 @@
 			for (let i = 0; i < 9; ++i) {
 				const cell = cells[i];
 				cell.addEventListener("click", () => {
-					if (game.done || game.get(i) !== null) return;
-					game.play(i);
+					if (game.done || game.board[i] !== null) return;
 
-					cell.textContent = game.get(i);
+					game.play(i);
+					cell.textContent = game.board[i];
 					cell.dataset.player = cell.textContent;
 					cell.ariaDisabled = true;
 
@@ -57,10 +57,10 @@
 
 			resetButton.addEventListener("click", () => {
 				game.reset();
-				title.textContent = `Player ${game.player}`;
+				title.textContent = "Player X";
 				for (const cell of cells) {
 					cell.textContent = "";
-					cell.dataset.player = "";
+					cell.dataset.player = null;
 					cell.ariaDisabled = false;
 				}
 			});

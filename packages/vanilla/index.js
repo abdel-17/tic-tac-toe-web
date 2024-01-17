@@ -1,51 +1,52 @@
 import { determineWinner } from "../shared/index.js";
 
+/**
+ * @typedef {import("../shared/index.js").Player} Player
+ */
+
 export class TicTacToe {
-	#board = Array(9).fill(null);
+	/**
+	 * @type {Array<Player | null>}
+	 */
+	board = Array(9).fill(null);
 
-	#player = "X";
+	/**
+	 * @type {Player}
+	 */
+	player = "X";
 
-	#winner = null;
+	/**
+	 * @type {Player | null}
+	 */
+	winner = null;
 
-	#turns = 0;
-
-	get player() {
-		return this.#player;
-	}
-
-	get winner() {
-		return this.#winner;
-	}
-
-	get turns() {
-		return this.#turns;
-	}
+	turns = 0;
 
 	get done() {
-		return this.#winner !== null || this.#turns === 9;
+		return this.winner !== null || this.turns === 9;
 	}
 
-	get(i) {
-		return this.#board[i];
-	}
-
+	/**
+	 *
+	 * @param {number} i
+	 */
 	play(i) {
-		this.#board[i] = this.#player;
-		this.#winner = determineWinner({
-			board: this.#board,
-			currentPlayer: this.#player,
+		this.board[i] = this.player;
+		this.winner = determineWinner({
+			board: this.board,
+			currentPlayer: this.player,
 			lastPlayedAt: i,
 		});
-		this.#player = this.#player === "X" ? "O" : "X";
-		this.#turns++;
+		this.player = this.player === "X" ? "O" : "X";
+		this.turns++;
 	}
 
 	reset() {
 		for (let i = 0; i < 9; ++i) {
-			this.#board[i] = null;
+			this.board[i] = null;
 		}
-		this.#player = "X";
-		this.#winner = null;
-		this.#turns = 0;
+		this.player = "X";
+		this.winner = null;
+		this.turns = 0;
 	}
 }
