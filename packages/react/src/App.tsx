@@ -8,7 +8,7 @@ function createEmptyBoard(): Array<Player | null> {
 }
 
 export default function App() {
-	const [board, setBoard] = useState<Array<Player | null>>(createEmptyBoard);
+	const [board, setBoard] = useState(createEmptyBoard);
 	const [player, setPlayer] = useState<Player>("X");
 	const [winner, setWinner] = useState<Player | null>(null);
 	const [turns, setTurns] = useState(0);
