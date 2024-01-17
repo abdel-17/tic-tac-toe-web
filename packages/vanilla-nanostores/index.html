@@ -44,9 +44,12 @@
 					cell.dataset.player = player;
 				});
 
-				const $ariaDisabled = computed([game.$done, $player], (done, player) => {
-					return done || player !== null;
-				});
+				const $ariaDisabled = computed(
+					[game.$done, $player],
+					(done, player) => {
+						return done || player !== null;
+					},
+				);
 				$ariaDisabled.subscribe((ariaDisabled) => {
 					cell.ariaDisabled = ariaDisabled;
 				});
