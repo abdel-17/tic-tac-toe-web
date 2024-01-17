@@ -27,7 +27,6 @@ export class TicTacToe {
 	}
 
 	/**
-	 *
 	 * @param {number} i
 	 */
 	play(i) {
