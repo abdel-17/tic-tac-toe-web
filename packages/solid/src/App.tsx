@@ -19,7 +19,7 @@ const App: Component = () => {
 		} else if (winner() === null) {
 			return `Player ${player()}`;
 		} else {
-			return `Player ${player()} won!`;
+			return `Player ${winner()} won!`;
 		}
 	};
 
@@ -49,13 +49,13 @@ const App: Component = () => {
 	}
 
 	return (
-		<>
+		<div class="game-root">
 			<p class="game-title">{title()}</p>
 			<GameBoard board={board()} done={done()} onPlay={handlePlay} />
 			<button class="game-reset-btn" onClick={handleReset}>
 				Reset
 			</button>
-		</>
+		</div>
 	);
 };
 

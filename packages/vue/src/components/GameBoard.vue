@@ -28,11 +28,13 @@ defineEmits<{
 
 <style scoped>
 .game-board {
+	--border-size: 0.25rem;
+	--border-color: black;
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
-	gap: var(--board-border-size);
-	background-color: var(--board-border);
-	border: var(--board-border-size) solid var(--board-border);
+	gap: var(--border-size);
+	background-color: var(--border-color);
+	border: var(--border-size) solid var(--border-color);
 }
 
 .game-cell {
@@ -42,16 +44,16 @@ defineEmits<{
 	width: 4rem;
 	height: 4rem;
 	font-size: 3rem;
-	background-color: var(--board-bg);
+	background-color: white;
 	transition: background-color 0.2s ease-out;
 }
 
 .game-cell[data-player="X"] {
-	background-color: var(--x-bg);
+	background-color: #f87171;
 }
 
 .game-cell[data-player="O"] {
-	background-color: var(--o-bg);
+	background-color: #38bdf8;
 }
 
 .game-cell[aria-disabled="true"] {

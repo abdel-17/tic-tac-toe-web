@@ -17,7 +17,7 @@
 	} else if (winner === null) {
 		title = `Player ${player}`;
 	} else {
-		title = `Player ${player} won!`;
+		title = `Player ${winner} won!`;
 	}
 
 	function handlePlay(i: number) {
@@ -41,11 +41,21 @@
 	}
 </script>
 
-<p class="game-title">{title}</p>
-<GameBoard {board} {done} on:play={(e) => handlePlay(e.detail)} />
-<button class="game-reset-btn" on:click={handleReset}>Reset</button>
+<div class="game-root">
+	<p class="game-title">{title}</p>
+	<GameBoard {board} {done} on:play={(e) => handlePlay(e.detail)} />
+	<button class="game-reset-btn" on:click={handleReset}>Reset</button>
+</div>
 
 <style>
+	.game-root {
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+
 	.game-title {
 		font-size: 1.5rem;
 		margin: 0;
@@ -59,15 +69,15 @@
 		height: 2rem;
 		padding: 0 1rem;
 		border-radius: 0.25rem;
-		background-color: var(--btn-error-bg);
+		background-color: #dc2626;
 		color: white;
 	}
 
 	.game-reset-btn:hover {
-		background-color: var(--btn-error-hover-bg);
+		background-color: #b91c1c;
 	}
 
 	.game-reset-btn:active {
-		background-color: var(--btn-error-active-bg);
+		background-color: #991b1b;
 	}
 </style>

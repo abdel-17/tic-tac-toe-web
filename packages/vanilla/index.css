@@ -1,17 +1,9 @@
-:root {
-	--board-border-size: 0.25rem;
-	--board-border: black;
-	--board-bg: white;
-	--x-bg: #f87171;
-	--o-bg: #38bdf8;
-	--btn-error-bg: #dc2626;
-	--btn-error-hover-bg: #b91c1c;
-	--btn-error-active-bg: #991b1b;
-}
-
 body {
 	margin: 0;
 	font-family: system-ui, sans-serif;
+}
+
+.game-root {
 	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
@@ -26,11 +18,13 @@ body {
 }
 
 .game-board {
+	--border-size: 0.25rem;
+	--border-color: black;
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
-	gap: var(--board-border-size);
-	background-color: var(--board-border);
-	border: var(--board-border-size) solid var(--board-border);
+	gap: var(--border-size);
+	background-color: var(--border-color);
+	border: var(--border-size) solid var(--border-color);
 }
 
 .game-cell {
@@ -40,16 +34,16 @@ body {
 	width: 4rem;
 	height: 4rem;
 	font-size: 3rem;
-	background-color: var(--board-bg);
+	background-color: white;
 	transition: background-color 0.2s ease-out;
 }
 
 .game-cell[data-player="X"] {
-	background-color: var(--x-bg);
+	background-color: #f87171;
 }
 
 .game-cell[data-player="O"] {
-	background-color: var(--o-bg);
+	background-color: #38bdf8;
 }
 
 .game-cell[aria-disabled="true"] {
@@ -63,14 +57,14 @@ body {
 	height: 2rem;
 	padding: 0 1rem;
 	border-radius: 0.25rem;
-	background-color: var(--btn-error-bg);
+	background-color: #dc2626;
 	color: white;
 }
 
 .game-reset-btn:hover {
-	background-color: var(--btn-error-hover-bg);
+	background-color: #b91c1c;
 }
 
 .game-reset-btn:active {
-	background-color: var(--btn-error-active-bg);
+	background-color: #991b1b;
 }

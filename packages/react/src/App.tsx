@@ -1,7 +1,7 @@
 import "./App.css";
 
 import { useState } from "react";
-import { type Player, determineWinner } from "shared";
+import { determineWinner, type Player } from "shared";
 
 function createEmptyBoard(): Array<Player | null> {
 	return new Array(9).fill(null);
@@ -21,7 +21,7 @@ export default function App() {
 	} else if (winner === null) {
 		title = `Player ${player}`;
 	} else {
-		title = `Player ${player} won!`;
+		title = `Player ${winner} won!`;
 	}
 
 	function handlePlay(i: number) {
@@ -50,13 +50,13 @@ export default function App() {
 	}
 
 	return (
-		<>
+		<div className="game-root">
 			<p className="game-title">{title}</p>
 			<GameBoard board={board} done={done} onPlay={handlePlay} />
 			<button className="game-reset-btn" onClick={handleReset}>
 				Reset
 			</button>
-		</>
+		</div>
 	);
 }
 

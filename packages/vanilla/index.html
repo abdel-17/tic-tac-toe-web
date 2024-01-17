@@ -7,19 +7,21 @@
 		<link rel="stylesheet" href="./index.css" />
 	</head>
 	<body>
-		<p id="title" class="game-title">Player X</p>
-		<div class="game-board">
-			<button class="game-cell"></button>
-			<button class="game-cell"></button>
-			<button class="game-cell"></button>
-			<button class="game-cell"></button>
-			<button class="game-cell"></button>
-			<button class="game-cell"></button>
-			<button class="game-cell"></button>
-			<button class="game-cell"></button>
-			<button class="game-cell"></button>
+		<div class="game-root">
+			<p id="title" class="game-title">Player X</p>
+			<div class="game-board">
+				<button class="game-cell"></button>
+				<button class="game-cell"></button>
+				<button class="game-cell"></button>
+				<button class="game-cell"></button>
+				<button class="game-cell"></button>
+				<button class="game-cell"></button>
+				<button class="game-cell"></button>
+				<button class="game-cell"></button>
+				<button class="game-cell"></button>
+			</div>
+			<button id="reset" class="game-reset-btn">Reset</button>
 		</div>
-		<button id="reset" class="game-reset-btn">Reset</button>
 		<script type="module">
 			import { TicTacToe } from "./index.js";
 

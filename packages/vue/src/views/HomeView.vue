@@ -11,12 +11,12 @@ const turns = ref(0);
 const done = computed(() => winner.value !== null || turns.value === 9);
 
 const title = computed(() => {
-	if (winner.value === null) {
+	if (turns.value === 9) {
+		return "Draw";
+	} else if (winner.value === null) {
 		return `Player ${player.value}`;
-	} else if (winner.value === "X") {
-		return "Player X won!";
 	} else {
-		return "Player O won!";
+		return `Player ${winner.value} won!`;
 	}
 });
 
@@ -42,12 +42,22 @@ function handleReset() {
 </script>
 
 <template>
-	<p class="game-title">{{ title }}</p>
-	<GameBoard :board="board" :done="done" @play="(i) => handlePlay(i)" />
-	<button class="game-reset-btn" @click="handleReset()">Reset</button>
+	<div class="game-root">
+		<p class="game-title">{{ title }}</p>
+		<GameBoard :board="board" :done="done" @play="(i) => handlePlay(i)" />
+		<button class="game-reset-btn" @click="handleReset()">Reset</button>
+	</div>
 </template>
 
 <style scoped>
+.game-root {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
 .game-title {
 	font-size: 1.5rem;
 	margin: 0;
@@ -61,15 +71,15 @@ function handleReset() {
 	height: 2rem;
 	padding: 0 1rem;
 	border-radius: 0.25rem;
-	background-color: var(--btn-error-bg);
+	background-color: #dc2626;
 	color: white;
 }
 
 .game-reset-btn:hover {
-	background-color: var(--btn-error-hover-bg);
+	background-color: #b91c1c;
 }
 
 .game-reset-btn:active {
-	background-color: var(--btn-error-active-bg);
+	background-color: #991b1b;
 }
 </style>
