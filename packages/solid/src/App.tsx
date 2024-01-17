@@ -32,7 +32,6 @@ const App: Component = () => {
 
 		const newWinner = determineWinner({
 			board: newBoard,
-			currentPlayer: player(),
 			lastPlayedAt: i,
 		});
 		setWinner(newWinner);

@@ -33,7 +33,6 @@ export default function App() {
 
 		const newWinner = determineWinner({
 			board: newBoard,
-			currentPlayer: player,
 			lastPlayedAt: i,
 		});
 		setWinner(newWinner);

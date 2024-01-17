@@ -26,7 +26,6 @@
 		board[i] = player;
 		winner = determineWinner({
 			board,
-			currentPlayer: player,
 			lastPlayedAt: i,
 		});
 		player = player === "X" ? "O" : "X";

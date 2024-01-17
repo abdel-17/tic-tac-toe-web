@@ -33,7 +33,6 @@ export class TicTacToe {
 		this.board[i] = this.player;
 		this.winner = determineWinner({
 			board: this.board,
-			currentPlayer: this.player,
 			lastPlayedAt: i,
 		});
 		this.player = this.player === "X" ? "O" : "X";

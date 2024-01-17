@@ -6,7 +6,6 @@
  *
  * @typedef {Object} DetermineWinnerArgs
  * @property {ReadonlyArray<Player | null>} board
- * @property {Player} currentPlayer
  * @property {number} lastPlayedAt
  */
 
@@ -15,7 +14,7 @@
  * @param {DetermineWinnerArgs} args
  * @returns {Player | null}
  */
-export function determineWinner({ board, currentPlayer, lastPlayedAt }) {
+export function determineWinner({ board, lastPlayedAt }) {
 	//  0 | 1 | 2
 	// ---|---|---
 	//  3 | 4 | 5
@@ -23,24 +22,25 @@ export function determineWinner({ board, currentPlayer, lastPlayedAt }) {
 	//  6 | 7 | 8
 	const row = Math.floor(lastPlayedAt / 3);
 	const column = lastPlayedAt % 3;
+	const player = board[lastPlayedAt];
 
 	// Check the row triplet
 	if (allEqual(board[3 * row], board[3 * row + 1], board[3 * row + 2])) {
-		return currentPlayer;
+		return player;
 	}
 
 	// Check the column triplet
 	if (allEqual(board[column], board[column + 3], board[column + 6])) {
-		return currentPlayer;
+		return player;
 	}
 
 	// Check the diagonal triplets
 	if (row === column && allEqual(board[0], board[4], board[8])) {
-		return currentPlayer;
+		return player;
 	}
 
 	if (row + column === 2 && allEqual(board[2], board[4], board[6])) {
-		return currentPlayer;
+		return player;
 	}
 
 	return null;

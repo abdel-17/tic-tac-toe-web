@@ -26,7 +26,6 @@ function handlePlay(i: number) {
 	board.value[i] = player.value;
 	winner.value = determineWinner({
 		board: board.value,
-		currentPlayer: player.value,
 		lastPlayedAt: i,
 	});
 	player.value = player.value === "X" ? "O" : "X";
