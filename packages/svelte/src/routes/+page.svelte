@@ -4,7 +4,7 @@
 	import GameBoard from "$lib/GameBoard.svelte";
 	import { determineWinner, type Player } from "shared";
 
-	let board = new Array(9).fill(null);
+	let board = new Array<Player | null>(9).fill(null);
 	let player: Player = "X";
 	let winner: Player | null = null;
 	let turns = 0;
