@@ -52,8 +52,8 @@ export class TicTacToe {
 	}
 
 	reset() {
-		for (let i = 0; i < 9; ++i) {
-			this.board[i].set(null);
+		for (const $player of this.board) {
+			$player.set(null);
 		}
 		this.$player.set("X");
 		this.$winner.set(null);
