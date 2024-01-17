@@ -6,4 +6,5 @@ A monorepo containing the same Tic-Tac-Toe game built with different web framewo
 - [Solid](./packages/solid)
 - [Svelte](./packages/svelte)
 - [Vanilla](./packages/vanilla)
+- [Vanilla + Nanostores](./packages/vanilla-nanostores)
 - [Vue](./packages/vue)

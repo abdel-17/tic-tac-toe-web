@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Tic Tac Toe</title>
+		<link rel="stylesheet" href="./index.css" />
+	</head>
+	<body>
+		<div class="game-root">
+			<p id="title" class="game-title">Player X</p>
+			<div class="game-board">
+				<button class="game-cell"></button>
+				<button class="game-cell"></button>
+				<button class="game-cell"></button>
+				<button class="game-cell"></button>
+				<button class="game-cell"></button>
+				<button class="game-cell"></button>
+				<button class="game-cell"></button>
+				<button class="game-cell"></button>
+				<button class="game-cell"></button>
+			</div>
+			<button id="reset" class="game-reset-btn">Reset</button>
+		</div>
+		<script type="module">
+			import { computed } from "https://cdn.jsdelivr.net/npm/nanostores@0.9.5/+esm";
+			import { TicTacToe } from "./index.js";
+
+			const game = new TicTacToe();
+			const titleEl = document.getElementById("title");
+			const cells = document.getElementsByClassName("game-cell");
+			const resetButton = document.getElementById("reset");
+
+			game.$title.subscribe((title) => {
+				titleEl.textContent = title;
+			});
+
+			for (let i = 0; i < 9; ++i) {
+				const cell = cells[i];
+				const $player = game.board[i];
+
+				$player.subscribe((player) => {
+					cell.textContent = player ?? "";
+					cell.dataset.player = player;
+				});
+
+				const $ariaDisabled = computed([game.$done, $player], (done, player) => {
+					return done || player !== null;
+				});
+				$ariaDisabled.subscribe((ariaDisabled) => {
+					cell.ariaDisabled = ariaDisabled;
+				});
+
+				cell.addEventListener("click", () => {
+					if (game.$done.get() || $player.get() !== null) return;
+					game.play(i);
+				});
+			}
+
+			resetButton.addEventListener("click", () => game.reset());
+		</script>
+	</body>
+</html>

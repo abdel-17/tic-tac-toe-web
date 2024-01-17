@@ -1,0 +1,70 @@
+body {
+	margin: 0;
+	font-family: system-ui, sans-serif;
+}
+
+.game-root {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.game-title {
+	font-size: 1.5rem;
+	margin: 0;
+	margin-bottom: 1.5rem;
+}
+
+.game-board {
+	--border-size: 0.25rem;
+	--border-color: black;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: var(--border-size);
+	background-color: var(--border-color);
+	border: var(--border-size) solid var(--border-color);
+}
+
+.game-cell {
+	appearance: none;
+	border: none;
+	cursor: pointer;
+	width: 4rem;
+	height: 4rem;
+	font-size: 3rem;
+	background-color: white;
+	transition: background-color 0.2s ease-out;
+}
+
+.game-cell[data-player="X"] {
+	background-color: #f87171;
+}
+
+.game-cell[data-player="O"] {
+	background-color: #38bdf8;
+}
+
+.game-cell[aria-disabled="true"] {
+	cursor: default;
+}
+
+.game-reset-btn {
+	appearance: none;
+	border: none;
+	margin-top: 2rem;
+	height: 2rem;
+	padding: 0 1rem;
+	border-radius: 0.25rem;
+	background-color: #dc2626;
+	color: white;
+}
+
+.game-reset-btn:hover {
+	background-color: #b91c1c;
+}
+
+.game-reset-btn:active {
+	background-color: #991b1b;
+}
