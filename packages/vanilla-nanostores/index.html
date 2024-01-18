@@ -46,9 +46,7 @@
 
 				const $ariaDisabled = computed(
 					[game.$done, $player],
-					(done, player) => {
-						return done || player !== null;
-					},
+					(done, player) => done || player !== null,
 				);
 				$ariaDisabled.subscribe((ariaDisabled) => {
 					cell.ariaDisabled = ariaDisabled;
