@@ -43,7 +43,7 @@ export class TicTacToe {
 		this.board[i].set(this.$player.get());
 		this.$winner.set(
 			determineWinner({
-				board: this.board.map((cell) => cell.get()),
+				board: this.board.map(($player) => $player.get()),
 				lastPlayedAt: i,
 			}),
 		);
