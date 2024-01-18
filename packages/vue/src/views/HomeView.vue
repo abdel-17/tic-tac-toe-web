@@ -3,7 +3,7 @@ import GameBoard from "@/components/GameBoard.vue";
 import { determineWinner, type Player } from "shared";
 import { computed, ref } from "vue";
 
-const board = ref(new Array<Player | null>(9).fill(null));
+const board = ref(Array<Player | null>(9).fill(null));
 const player = ref<Player>("X");
 const winner = ref<Player | null>(null);
 const turns = ref(0);
@@ -33,7 +33,7 @@ function handlePlay(i: number) {
 }
 
 function handleReset() {
-	board.value = new Array(9).fill(null);
+	board.value = Array(9).fill(null);
 	winner.value = null;
 	player.value = "X";
 	turns.value = 0;

@@ -4,7 +4,7 @@
 	import GameBoard from "$lib/GameBoard.svelte";
 	import { determineWinner, type Player } from "shared";
 
-	let board = new Array<Player | null>(9).fill(null);
+	let board = Array<Player | null>(9).fill(null);
 	let player: Player = "X";
 	let winner: Player | null = null;
 	let turns = 0;
@@ -33,7 +33,7 @@
 	}
 
 	function handleReset() {
-		board = new Array(9).fill(null);
+		board = Array(9).fill(null);
 		winner = null;
 		player = "X";
 		turns = 0;

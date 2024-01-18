@@ -40,9 +40,7 @@ export class TicTacToe {
 	}
 
 	reset() {
-		for (let i = 0; i < 9; ++i) {
-			this.board[i] = null;
-		}
+		this.board.fill(null);
 		this.player = "X";
 		this.winner = null;
 		this.turns = 0;

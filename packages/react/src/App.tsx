@@ -4,7 +4,7 @@ import { useState } from "react";
 import { determineWinner, type Player } from "shared";
 
 function createEmptyBoard(): Array<Player | null> {
-	return new Array(9).fill(null);
+	return Array(9).fill(null);
 }
 
 export default function App() {

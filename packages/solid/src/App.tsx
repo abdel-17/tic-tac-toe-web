@@ -4,9 +4,7 @@ import { determineWinner, type Player } from "shared";
 import { createSignal, Index, type Component } from "solid-js";
 
 const App: Component = () => {
-	const [board, setBoard] = createSignal(
-		new Array<Player | null>(9).fill(null),
-	);
+	const [board, setBoard] = createSignal(Array<Player | null>(9).fill(null));
 	const [player, setPlayer] = createSignal<Player>("X");
 	const [winner, setWinner] = createSignal<Player | null>(null);
 	const [turns, setTurns] = createSignal(0);
@@ -41,7 +39,7 @@ const App: Component = () => {
 	}
 
 	function handleReset() {
-		setBoard(new Array(9).fill(null));
+		setBoard(Array(9).fill(null));
 		setPlayer("X");
 		setWinner(null);
 		setTurns(0);
