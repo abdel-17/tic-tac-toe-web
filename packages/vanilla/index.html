@@ -40,13 +40,13 @@
 					cell.dataset.player = cell.textContent;
 					cell.ariaDisabled = true;
 
-					if (game.turns === 9) {
-						title.textContent = "Draw!";
+					if (!game.done) {
+						title.textContent = `Player ${game.player}`;
 						return;
 					}
 
 					if (game.winner === null) {
-						title.textContent = `Player ${game.player}`;
+						title.textContent = "Draw!";
 						return;
 					}
 

@@ -16,12 +16,12 @@ export default function App() {
 	const done = winner !== null || turns === 9;
 
 	let title: string;
-	if (turns === 9) {
-		title = "Draw!";
-	} else if (winner === null) {
+	if (!done) {
 		title = `Player ${player}`;
-	} else {
+	} else if (winner !== null) {
 		title = `Player ${winner} won!`;
+	} else {
+		title = "Draw!";
 	}
 
 	function handlePlay(i: number) {

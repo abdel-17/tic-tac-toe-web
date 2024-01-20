@@ -27,14 +27,14 @@ export class TicTacToe {
 	);
 
 	$title = computed(
-		[this.$turns, this.$winner, this.$player],
-		(turns, winner, player) => {
-			if (turns === 9) {
-				return "Draw!";
-			} else if (winner === null) {
+		[this.$done, this.$winner, this.$player],
+		(done, winner, player) => {
+			if (!done) {
 				return `Player ${player}`;
-			} else {
+			} else if (winner !== null) {
 				return `Player ${winner} won!`;
+			} else {
+				return "Draw!";
 			}
 		},
 	);

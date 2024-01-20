@@ -12,12 +12,12 @@ const App: Component = () => {
 	const done = () => winner() !== null || turns() === 9;
 
 	const title = () => {
-		if (turns() === 9) {
-			return "Draw!";
-		} else if (winner() === null) {
+		if (!done()) {
 			return `Player ${player()}`;
-		} else {
+		} else if (winner() !== null) {
 			return `Player ${winner()} won!`;
+		} else {
+			return "Draw!";
 		}
 	};
 

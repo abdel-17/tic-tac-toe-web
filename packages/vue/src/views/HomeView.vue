@@ -11,12 +11,12 @@ const turns = ref(0);
 const done = computed(() => winner.value !== null || turns.value === 9);
 
 const title = computed(() => {
-	if (turns.value === 9) {
-		return "Draw";
-	} else if (winner.value === null) {
+	if (!done.value) {
 		return `Player ${player.value}`;
-	} else {
+	} else if (winner.value !== null) {
 		return `Player ${winner.value} won!`;
+	} else {
+		return "Draw!";
 	}
 });
 
