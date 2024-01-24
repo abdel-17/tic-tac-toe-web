@@ -41,7 +41,8 @@
 	background-color: #38bdf8;
 }
 
-.game-cell[aria-disabled="true"] {
+.game-cell:disabled {
+	color: black;
 	cursor: default;
 }
 

@@ -16,7 +16,7 @@ defineEmits<{
 		<button
 			v-for="(player, i) in board"
 			:key="i"
-			:aria-disabled="done || player !== null"
+			:disabled="done || player !== null"
 			:data-player="player"
 			class="game-cell"
 			@click="() => $emit('play', i)"
@@ -56,7 +56,8 @@ defineEmits<{
 	background-color: #38bdf8;
 }
 
-.game-cell[aria-disabled="true"] {
+.game-cell:disabled {
+	color: black;
 	cursor: default;
 }
 </style>

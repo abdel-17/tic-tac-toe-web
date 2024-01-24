@@ -71,7 +71,7 @@ function GameBoard({ board, done, onPlay }: GameBoardProps) {
 			{board.map((player, i) => (
 				<button
 					key={i}
-					aria-disabled={done || player !== null}
+					disabled={done || player !== null}
 					data-player={player}
 					className="game-cell"
 					onClick={() => onPlay(i)}

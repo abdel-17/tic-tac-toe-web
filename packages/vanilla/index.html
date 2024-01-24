@@ -38,7 +38,7 @@
 					game.play(i);
 					cell.textContent = game.board[i];
 					cell.dataset.player = cell.textContent;
-					cell.ariaDisabled = true;
+					cell.disabled = true;
 
 					if (!game.done) {
 						title.textContent = `Player ${game.player}`;
@@ -52,7 +52,7 @@
 
 					title.textContent = `Player ${game.winner} won!`;
 					for (const cell of cells) {
-						cell.ariaDisabled = true;
+						cell.disabled = true;
 					}
 				});
 			}
@@ -63,7 +63,7 @@
 				for (const cell of cells) {
 					cell.textContent = "";
 					cell.dataset.player = null;
-					cell.ariaDisabled = false;
+					cell.disabled = false;
 				}
 			});
 		</script>

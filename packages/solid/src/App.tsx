@@ -68,7 +68,7 @@ const GameBoard: Component<GameBoardProps> = (props) => {
 			<Index each={props.board}>
 				{(player, i) => (
 					<button
-						aria-disabled={props.done || player() !== null}
+						disabled={props.done || player() !== null}
 						data-player={player()}
 						class="game-cell"
 						onClick={() => props.onPlay(i)}

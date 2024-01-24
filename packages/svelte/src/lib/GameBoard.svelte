@@ -13,7 +13,7 @@
 <div class="game-board">
 	{#each board as player, i}
 		<button
-			aria-disabled={done || player !== null}
+			disabled={done || player !== null}
 			data-player={player}
 			class="game-cell"
 			on:click={() => dispatch("play", i)}
@@ -53,7 +53,8 @@
 		background-color: #38bdf8;
 	}
 
-	.game-cell[aria-disabled="true"] {
+	.game-cell:disabled {
+		color: black;
 		cursor: default;
 	}
 </style>
